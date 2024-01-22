@@ -3,8 +3,13 @@
 <section id="form-post" class="container mt-5">
   <form action="scripts/post-create-script.php" method="POST">
     <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Title">
+      <input type="text" class="form-control" placeholder="Title" name="title">
     </div>
+    <?php if(isset($_GET['error'])) : ?>
+    <div class="alert alert-danger">
+      <?php echo $_GET['error']; ?>
+    </div>
+    <?php endif; ?>
     <input type="submit" value="Envoyer">
   </form>
 </section>

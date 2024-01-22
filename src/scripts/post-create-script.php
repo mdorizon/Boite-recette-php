@@ -1,4 +1,6 @@
 <?php
-var_dump($_POST);
 $title_post = $_POST['title'];
-var_dump($title_post);
+
+if(empty($title_post)) {
+  header("Location: ../index.php?error=Veuillez renseigner un titre");
+}

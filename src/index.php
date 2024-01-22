@@ -5,11 +5,19 @@
     <div class="mb-3">
       <input type="text" class="form-control" placeholder="Title" name="title">
     </div>
+
     <?php if(isset($_GET['error'])) : ?>
     <div class="alert alert-danger">
       <?php echo $_GET['error']; ?>
     </div>
     <?php endif; ?>
+
+    <?php if(isset($_GET['success'])) : ?>
+    <div class="alert alert-success">
+      <?php echo $_GET['success']; ?>
+    </div>
+    <?php endif; ?>
+
     <input type="submit" value="Envoyer">
   </form>
 </section>

@@ -26,15 +26,10 @@ services:
       MYSQL_ROOT_PASSWORD: admin
 
   app:
-    image: php:8.1-apache
+    build: ./php
     ports:
       - 8000:80
     volumes:
       - ./src:/var/www/html
     environment:
       - APP_ENV=dev
-
-
-
-
-

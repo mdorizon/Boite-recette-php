@@ -6,10 +6,12 @@ if(empty($title_post)) {
 }
 
 // connect to db with PDO
-$connectDatabase = new PDO("mysql:host=localhost;dbname=wordpress", "root", "admin");
+$connectDatabase = new PDO("mysql:host=db;dbname=wordpress", "root", "admin");
 // prepare request
 $request = $connectDatabase->prepare("INSERT INTO posts (title) VALUES (:title)");
 // bind params
 $request->bindParam(':title', $title_post);
 // execute request
 $request->execute();
+
+header("Location: ../index.php?success=Le post a bien été ajouté");

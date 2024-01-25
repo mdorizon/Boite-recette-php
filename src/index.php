@@ -38,7 +38,7 @@ $posts = $request->fetchAll(PDO::FETCH_ASSOC);
     <li>
       <!-- htmlspecialchars pour protection contre attaque xss -->
       <?php echo htmlspecialchars($post['title']); ?>
-      <a href="scripts/post-delete-script.php">DELETE</a>
+      <a href="scripts/post-delete-script.php?id=<?php echo $post['id']; ?>">DELETE</a>
     </li>
     <?php endforeach; ?>
   </ul>

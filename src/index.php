@@ -21,13 +21,26 @@
     <input type="submit" value="Envoyer">
   </form>
 </section>
-
+<?php 
+// connect to db
+$connectDatabase = new PDO("mysql:host=db;dbname=wordpress", "root", "admin");
+// prepare request INSERT INTO posts (title) VALUES (:title)
+$request = $connectDatabase->prepare("SELECT * FROM `posts`");
+// execute request
+$request->execute();
+// fetch all data from table posts
+$posts = $request->fetchAll(PDO::FETCH_ASSOC);
+?>
+<!-- show data in html -->
 <section id="post-list" class="container mt-5">
   <ul>
-    <li>Lorem, ipsum dolor.</li>
-    <li>Enim, corrupti veniam!</li>
-    <li>Fugit, doloribus voluptatem!</li>
-    <li>Laboriosam, voluptas fugit.</li>
+    <?php foreach ($posts as $post) : ?>
+    <li>
+      <!-- htmlspecialchars pour protection contre attaque xss -->
+      <?php echo htmlspecialchars($post['title']); ?>
+      <a href="scripts/post-delete-script.php">DELETE</a>
+    </li>
+    <?php endforeach; ?>
   </ul>
 </section>
 

@@ -36,6 +36,9 @@ $posts = $request->fetchAll(PDO::FETCH_ASSOC);
   <ul>
     <?php foreach ($posts as $post) : ?>
     <li>
+      <form action="scripts/post-update-script.php?id=<?php echo htmlspecialchars($post['id']); ?>" method="POST">
+        <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>">
+      </form>
       <!-- htmlspecialchars pour protection contre attaque xss -->
       <?php echo htmlspecialchars($post['title']); ?>
       <a href="scripts/post-delete-script.php?id=<?php echo htmlspecialchars($post['id']); ?>">DELETE</a>

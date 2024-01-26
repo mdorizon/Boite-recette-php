@@ -8,13 +8,13 @@
 
     <?php if(isset($_GET['error'])) : ?>
     <div class="alert alert-danger">
-      <?php echo $_GET['error']; ?>
+      <?php echo htmlspecialchars($_GET['error']); ?>
     </div>
     <?php endif; ?>
 
     <?php if(isset($_GET['success'])) : ?>
     <div class="alert alert-success">
-      <?php echo $_GET['success']; ?>
+      <?php echo htmlspecialchars($_GET['success']); ?>
     </div>
     <?php endif; ?>
 
@@ -38,7 +38,7 @@ $posts = $request->fetchAll(PDO::FETCH_ASSOC);
     <li>
       <!-- htmlspecialchars pour protection contre attaque xss -->
       <?php echo htmlspecialchars($post['title']); ?>
-      <a href="scripts/post-delete-script.php?id=<?php echo $post['id']; ?>">DELETE</a>
+      <a href="scripts/post-delete-script.php?id=<?php echo htmlspecialchars($post['id']); ?>">DELETE</a>
     </li>
     <?php endforeach; ?>
   </ul>

@@ -2,6 +2,11 @@
 $post_id = $_GET['id'];
 $title_post = $_POST['title'];
 
+if(empty($title_post)) {
+  header("Location: ../index.php?error=Veuillez renseigner un titre");
+  die(); // interruption du script
+}
+
 // connect to db
 $connectDatabase = new PDO("mysql:host=db;dbname=wordpress", "root", "admin");
 // prepare request

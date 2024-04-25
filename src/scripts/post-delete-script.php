@@ -10,4 +10,4 @@ $request->bindParam(':id', $post_id);
 // execute request
 $request->execute();
 
-header("Location: ../index.php?success=Le post a bien été supprimé");
+header("Location: ../post-list.php?success=Le post a bien été supprimé");

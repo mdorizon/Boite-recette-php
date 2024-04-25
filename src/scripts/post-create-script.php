@@ -15,4 +15,4 @@ if(empty($title_post)) {
   // execute request
   $request->execute();
 
-  header("Location: ../index.php?success=Le post a bien été ajouté");
+  header("Location: ../post-list.php?success=Le post a bien été ajouté");

@@ -17,4 +17,4 @@ $request->bindParam(':title', $title_post);
 // execute request
 $request->execute();
 
-header("Location: ../index.php?success=Le post a bien été modifié");
+header("Location: ../post-list.php?success=Le post a bien été modifié");

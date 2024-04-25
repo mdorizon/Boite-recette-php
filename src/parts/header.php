@@ -13,3 +13,14 @@
 </head>
 
 <body>
+  <nav class="text-center p-3">
+    <?php if(!isset($_SESSION['username'])) : ?>
+      <a href="index.php">Signin</a>
+      <a href="signup.php">Signup</a>
+    <?php endif; ?>
+    <?php if(isset($_SESSION["username"])) : ?>
+      <a href="post-list.php">Post list</a> 
+      <p>connecté en tant que: <?= $_SESSION["username"]; ?></p>
+      <a href="scripts/disconnect.php">se déconnecter</a>
+    <?php endif; ?>
+  </nav>

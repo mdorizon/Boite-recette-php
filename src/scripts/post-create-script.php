@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $title_post = $_POST['title'];
 
 if(empty($title_post)) {
@@ -9,9 +11,10 @@ if(empty($title_post)) {
   // connect to db with PDO
   $connectDatabase = new PDO("mysql:host=db;dbname=wordpress", "root", "admin");
   // prepare request
-  $request = $connectDatabase->prepare("INSERT INTO posts (title) VALUES (:title)");
+  $request = $connectDatabase->prepare("INSERT INTO posts (title, user_id) VALUES (:title, :user_id)");
   // bind params
   $request->bindParam(':title', $title_post);
+  $request->bindParam(':user_id', $_SESSION["id"]);
   // execute request
   $request->execute();
 

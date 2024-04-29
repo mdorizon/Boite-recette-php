@@ -1,12 +1,11 @@
 <?php
-$username = $_POST['username'];
-$password = $_POST['password'];
+$hash_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-if(empty($username)) {
+if(empty($_POST['username'])) {
   header("Location: ../signup.php?error=Veuillez renseigner un nom d'utilisateur");
   die(); // interruption du script
 }
-if(empty($password)) {
+if(empty($_POST['password'])) {
   header("Location: ../signup.php?error=Veuillez renseigner un mot de passe");
   die(); // interruption du script
 }
@@ -16,8 +15,8 @@ if(empty($password)) {
   // prepare request
   $request = $connectDatabase->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
   // bind params
-  $request->bindParam(':username', $username);
-  $request->bindParam(':password', $password);
+  $request->bindParam(':username', $_POST['username']);
+  $request->bindParam(':password', $hash_password);
   // execute request
   $request->execute();
 

@@ -1,11 +1,11 @@
 <?php require_once 'parts/header.php'; ?>
 
 <div class="container w-25 mt-5">
-  <h1>Nombre de usuario</h1>
+  <h1>Nom d'utilisateur</h1>
 
   <form action="scripts/login.php" method="POST" class="mb-3 mt-3">
     <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+      <input type="text" class="form-control" placeholder="Nom" name="name">
     </div>
 
     <?php if(isset($_GET['error'])) : ?>
@@ -20,7 +20,7 @@
         </div>
       <?php endif; ?>
 
-    <input type="submit" class="btn btn-primary w-100" value="Entrar">
+    <input type="submit" class="btn btn-primary w-100" value="se connecter">
   </form>
 </div>
 

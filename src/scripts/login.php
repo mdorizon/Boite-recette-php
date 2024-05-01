@@ -1,27 +1,27 @@
 <?php 
 
-if(empty($_POST['nombre'])) {
-  header("Location: ../index.php?error=Introduzca un nombre de usuario");
-  die(); // interrupción del guión
+if(empty($_POST['name'])) {
+  header("Location: ../index.php?error=Entrez un nom d'utilisateur !");
+  die();
 }
 
-// conectar con db
+// connect to db
 $connectDatabase = new PDO("mysql:host=db;dbname=recipebox", "root", "admin");
-// preparar la solicitud
-$request = $connectDatabase->prepare("SELECT * FROM `recettas` WHERE nombre = :nombre");
-// bindparams (para proteger contra inyecciones)
-$request->bindParam(':nombre', $_POST['nombre']);
-// ejecutar solicitud
+// prepare request
+$request = $connectDatabase->prepare("SELECT * FROM `users` WHERE name = :name");
+// bindparams
+$request->bindParam(':name', $_POST['name']);
+// execute request
 $request->execute();
 $result = $request->fetch(PDO::FETCH_ASSOC);
 
 if(!$result) {
-  header("Location: ../index.php?error=Usuario no encontrado !");
+  header("Location: ../index.php?error=Utilisateur non trouvé !");
   die();
 }
 
 session_start();
-$_SESSION["nombre"] = $_POST['nombre'];
+$_SESSION["name"] = $result['name'];
 $_SESSION["id"] = $result['id'];
 
-header("Location: ../recettas.php");
+header("Location: ../recettes.php");

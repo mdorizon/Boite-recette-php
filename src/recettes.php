@@ -26,8 +26,8 @@ $result = $request->fetchAll(PDO::FETCH_ASSOC);
 <section>
   <?php if (count($result) == 0) : ?>
     <div class="text-center">
-      <h2>Bonjour <?= $_SESSION['name']; ?>, Soyez le premier à poster une recette</h2>
-      <button>Ajouter</button>
+      <h2 class="mt-5">Bonjour <?= $_SESSION['name']; ?>, Soyez le premier à poster une recette</h2>
+      <button class="btn btn-primary mt-4">Ajouter</button>
     </div>
   <?php else: ?>
     <?php foreach ($result as $recette) : ?>
@@ -37,16 +37,20 @@ $result = $request->fetchAll(PDO::FETCH_ASSOC);
         // liste des étapes
         $steps = preg_split('/;\s*/', $recette['steps']);
       ?>
-      <img src="<?= $recette['img'] ?>" alt="recette<?= $recette['id']?>">
-      <h2><?= $recette['name'] ?></h2>
-      <p>Liste des ingrédients :</p>
-      <ul>
-        <?php foreach($ingredients as $ingredient){ echo('<li>' . $ingredient . '</li>'); } ?>
-      </ul>
-      <p>Etapes :</p>
-      <ol type="1">
-        <?php foreach($steps as $step){ echo('<li>' . $step . '</li>'); } ?>
-      </ol>
+      <div class="d-flex mt-5 mb-5">
+        <img class="w-50" src="<?= $recette['img'] ?>" alt="recette<?= $recette['id']?>">
+        <div class="ms-5 mt-5">
+          <h2><?= $recette['name'] ?></h2>
+          <p>Liste des ingrédients :</p>
+          <ul>
+            <?php foreach($ingredients as $ingredient){ echo('<li>' . $ingredient . '</li>'); } ?>
+          </ul>
+          <p>Etapes :</p>
+          <ol type="1">
+            <?php foreach($steps as $step){ echo('<li>' . $step . '</li>'); } ?>
+          </ol>
+        </div>
+      </div>
     <?php endforeach; ?>
   <?php endif; ?>
 </section>

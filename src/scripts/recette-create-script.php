@@ -1,21 +1,39 @@
 <?php
 session_start();
 
-$title_post = $_POST['title'];
+$recette_name = $_POST['recette-name'];
+$recette_img = $_POST['recette-img'];
+$recette_ingredients = $_POST['recette-ingredients'];
+$recette_steps = $_POST['recette-steps'];
 
-if(empty($title_post)) {
-  header("Location: ../index.php?error=Veuillez renseigner un titre");
-  die(); // interruption du script
+if(empty($recette_name)) {
+  header("Location: ../new-recette.php?error=Veuillez renseigner un nom");
+  die();
+}
+if(empty($recette_img)) {
+  header("Location: ../new-recette.php?error=Veuillez renseigner une image");
+  die();
+}
+if(empty($recette_ingredients)) {
+  header("Location: ../new-recette.php?error=Veuillez renseigner les ingrédients");
+  die();
+}
+if(empty($recette_steps)) {
+  header("Location: ../new-recette.php?error=Veuillez renseigner les étapes");
+  die();
 }
 
   // connect to db with PDO
-  $connectDatabase = new PDO("mysql:host=db;dbname=wordpress", "root", "admin");
+  $connectDatabase = new PDO("mysql:host=db;dbname=recipebox", "root", "admin");
   // prepare request
-  $request = $connectDatabase->prepare("INSERT INTO posts (title, user_id) VALUES (:title, :user_id)");
+  $request = $connectDatabase->prepare("INSERT INTO recettes (name, ingredients, steps, img, user_id) VALUES (:name, :ingredients, :steps, :img, :user_id)");
   // bind params
-  $request->bindParam(':title', $title_post);
+  $request->bindParam(':name', $recette_name);
+  $request->bindParam(':ingredients', $recette_ingredients);
+  $request->bindParam(':steps', $recette_steps);
+  $request->bindParam(':img', $recette_img);
   $request->bindParam(':user_id', $_SESSION["id"]);
   // execute request
   $request->execute();
 
-  header("Location: ../post-list.php?success=Le post a bien été ajouté");
+  header("Location: ../recettes.php");

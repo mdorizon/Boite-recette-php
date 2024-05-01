@@ -1,7 +1,4 @@
 <?php
-
-use function PHPSTORM_META\map;
-
   session_start();
   if(!isset($_SESSION['name'])) {
     header("Location: ../index.php");
@@ -27,7 +24,7 @@ $result = $request->fetchAll(PDO::FETCH_ASSOC);
   <?php if (count($result) == 0) : ?>
     <div class="text-center">
       <h2 class="mt-5">Bonjour <?= $_SESSION['name']; ?>, Soyez le premier à poster une recette</h2>
-      <button class="btn btn-primary mt-4">Ajouter</button>
+      <a class="btn btn-primary mt-4" href="./new-recette.php">Ajouter</a>
     </div>
   <?php else: ?>
     <?php foreach ($result as $recette) : ?>
